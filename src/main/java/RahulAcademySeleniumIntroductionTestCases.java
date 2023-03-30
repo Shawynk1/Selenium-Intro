@@ -1,12 +1,11 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import javax.naming.ldap.PagedResultsControl;
-import javax.print.DocFlavor;
 import java.time.Duration;
 
-public class RahulAcademySeleniumTestCases {
+public class RahulAcademySeleniumIntroductionTestCases {
     private final static String rahulAcademyURL = "https://rahulshettyacademy.com/";
     private ChromeDriver chromeDriver = null;
 
@@ -20,25 +19,25 @@ public class RahulAcademySeleniumTestCases {
         chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    RahulAcademySeleniumTestCases() {
+    RahulAcademySeleniumIntroductionTestCases() {
         initialization();
     }
 
-    private boolean checkCurrentURLInChrome(String expectedURL) {
-        return chromeDriver.getCurrentUrl().equals(expectedURL);
+    private boolean checkCurrentURL(String expectedURL, WebDriver driver) {
+        return driver.getCurrentUrl().equals(expectedURL);
     }
 
-    private boolean setChromeURL(String URL) {
-        chromeDriver.get(URL);
-        return checkCurrentURLInChrome(URL);
+    private boolean setWebDriverURL(String URL, WebDriver driver) {
+        driver.get(URL);
+        return checkCurrentURL(URL, driver);
     }
 
     private boolean resetChromeDriver() {
-        return setChromeURL(rahulAcademyURL);
+        return setWebDriverURL(rahulAcademyURL, chromeDriver);
     }
 
     private boolean initializeTestCase() {
-        return resetChromeDriver();
+        return setWebDriverURL(rahulAcademyURL, chromeDriver);
     }
 
     public boolean close() {
@@ -46,18 +45,28 @@ public class RahulAcademySeleniumTestCases {
         return true;
     }
 
-    public boolean passwordErrorMessageTestCase() {
+    public boolean passwordErrorMessageInChromeTestCase() {
+
         try {
+
             if (!initializeTestCase()) return false;
-            if (!setChromeURL("https://rahulshettyacademy.com/locatorspractice/")) return false;
+            if (!setWebDriverURL("https://rahulshettyacademy.com/locatorspractice/", chromeDriver)) return false;
             chromeDriver.findElement(By.id("inputUsername")).sendKeys("rahul");
             chromeDriver.findElement(By.name("inputPassword")).sendKeys("INCORRECTPASSWORD");
             chromeDriver.findElement(By.className("signInBtn")).click();
             return chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(incorrectPasswordMessage);
+
         } catch (Exception e) {
+
             e.printStackTrace();
-        } finally {
-            return false;
-        }
+
+        } // try catch
+
+        return false;
+    } // passwordErrorMessageTestCase
+
+    private boolean testCase2() {
+        return false;
     }
+
 }

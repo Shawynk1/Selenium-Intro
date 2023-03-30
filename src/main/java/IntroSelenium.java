@@ -1,12 +1,8 @@
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-
 public class IntroSelenium {
     public static void main(String[] args) {
-        RahulAcademySeleniumTestCases rahulAcademySeleniumTestCases = new RahulAcademySeleniumTestCases();
+        RahulAcademySeleniumIntroductionTestCases rahulAcademySeleniumTestCases = new RahulAcademySeleniumIntroductionTestCases();
         try {
-            System.out.println("passwordErrorMessageTestCase " + rahulAcademySeleniumTestCases.passwordErrorMessageTestCase());
+            System.out.println("passwordErrorMessageTestCase " + rahulAcademySeleniumTestCases.passwordErrorMessageInChromeTestCase());
         } catch (Exception e) {
             e.printStackTrace();
         }
