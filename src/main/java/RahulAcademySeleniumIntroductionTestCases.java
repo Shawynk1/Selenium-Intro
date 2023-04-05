@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ISelect;
+import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
@@ -65,7 +67,12 @@ public class RahulAcademySeleniumIntroductionTestCases {
         return false;
     } // passwordErrorMessageTestCase
 
-    private boolean testCase2() {
+    public boolean testCase2() {
+
+        if (!setWebDriverURL("https://rahulshettyacademy.com/dropdownsPractise/", chromeDriver)) return false;
+        Select dropdown = new Select(chromeDriver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
+        dropdown.selectByValue("USD");
+        System.out.println(dropdown.getFirstSelectedOption().getText());
         return false;
     }
 
