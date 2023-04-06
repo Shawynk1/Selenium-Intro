@@ -76,4 +76,16 @@ public class RahulAcademySeleniumIntroductionTestCases {
         return false;
     }
 
+    public boolean dynamicDropDownTestCase() throws InterruptedException {
+        if (!setWebDriverURL("https://rahulshettyacademy.com/dropdownsPractise/", chromeDriver)) return false;
+        chromeDriver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+
+        //chromeDriver.findElement(By.xpath("/html/body/form/div[4]/div[2]/div/div[5]/div[2]/div[2]/div[2]/div[3]/div/div[3]/div/div[1]/div[2]/div/table/tbody/tr[2]/td[2]/div[3]/div[1]/div/ul[1]/li[8]/a[@value='MAA']")).click();
+        chromeDriver.findElement(By.xpath("//a[@value='BLR']")).click();
+        Thread.sleep(2000);
+        chromeDriver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
+
+        Thread.sleep(3000);
+        return false;
+    }
 }
