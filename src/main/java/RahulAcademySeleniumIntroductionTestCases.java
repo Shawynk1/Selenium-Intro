@@ -1,3 +1,4 @@
+import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -56,24 +57,36 @@ public class RahulAcademySeleniumIntroductionTestCases {
             chromeDriver.findElement(By.id("inputUsername")).sendKeys("rahul");
             chromeDriver.findElement(By.name("inputPassword")).sendKeys("INCORRECTPASSWORD");
             chromeDriver.findElement(By.className("signInBtn")).click();
-            return chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(incorrectPasswordMessage);
+
+            //return chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(incorrectPasswordMessage);
 
         } catch (Exception e) {
 
             e.printStackTrace();
-
+            return false;
         } // try catch
 
-        return false;
+        Assert.isTrue(chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(incorrectPasswordMessage), "Error message is not correct.");
+
+        return true;
     } // passwordErrorMessageTestCase
 
     public boolean testCase2() {
 
+        Select dropdown = null;
+
         if (!setWebDriverURL("https://rahulshettyacademy.com/dropdownsPractise/", chromeDriver)) return false;
-        Select dropdown = new Select(chromeDriver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
-        dropdown.selectByValue("USD");
-        System.out.println(dropdown.getFirstSelectedOption().getText());
-        return false;
+        try {
+            dropdown = new Select(chromeDriver.findElement(By.id("ctl00_mainContent_DropDownListCurrency")));
+            dropdown.selectByIndex(2);
+            dropdown.selectByValue("USD");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        Assert.isTrue(dropdown.getFirstSelectedOption().getText().equals("USD"), "Dropdown selected is:\t" + dropdown.getFirstSelectedOption().getText());
+
+        return true;
     }
 
     public boolean dynamicDropDownTestCase() throws InterruptedException {
@@ -83,9 +96,11 @@ public class RahulAcademySeleniumIntroductionTestCases {
         //chromeDriver.findElement(By.xpath("/html/body/form/div[4]/div[2]/div/div[5]/div[2]/div[2]/div[2]/div[3]/div/div[3]/div/div[1]/div[2]/div/table/tbody/tr[2]/td[2]/div[3]/div[1]/div/ul[1]/li[8]/a[@value='MAA']")).click();
         chromeDriver.findElement(By.xpath("//a[@value='BLR']")).click();
         Thread.sleep(2000);
-        chromeDriver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
-
+        //chromeDriver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
+        chromeDriver.findElement(By.xpath("//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).click();
+        Assert.isTrue(chromeDriver.findElement(By.xpath("//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).isSelected(), "MAA is not selected.");
         Thread.sleep(3000);
-        return false;
+        
+        return true;
     }
 }
