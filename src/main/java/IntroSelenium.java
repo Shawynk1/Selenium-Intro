@@ -1,6 +1,33 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
 public class IntroSelenium {
+
+
+    private static Properties testSuiteProperties = new Properties();
+    private static void loadInitialGeneralProperties() {
+        try {
+            FileReader testSuitePropertiesFile = new FileReader("src/main/resources/chromeWebdriver");
+            testSuiteProperties.load(testSuitePropertiesFile);
+            testSuitePropertiesFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(testSuiteProperties.getProperty("--remote-allow-origins"));
+    }
+
+
+
+
     public static void main(String[] args) {
-        RahulAcademySeleniumIntroductionTestCases rahulAcademySeleniumTestCases = new RahulAcademySeleniumIntroductionTestCases();
+
+        loadInitialGeneralProperties();
+
+        /*RahulAcademySeleniumIntroductionTestCases rahulAcademySeleniumTestCases = new RahulAcademySeleniumIntroductionTestCases();
         try {
             System.out.println("passwordErrorMessageTestCase " + rahulAcademySeleniumTestCases.passwordErrorMessageInChromeTestCase());
 
@@ -29,6 +56,6 @@ public class IntroSelenium {
             System.out.println("\n");
         }
 
-        rahulAcademySeleniumTestCases.close();
+        rahulAcademySeleniumTestCases.close();*/
     }
 }
