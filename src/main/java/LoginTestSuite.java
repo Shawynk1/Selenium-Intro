@@ -1,7 +1,13 @@
 import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class LoginTestSuite extends TestSuite {
 
@@ -39,18 +45,19 @@ public class LoginTestSuite extends TestSuite {
     } // passwordErrorMessageTestCase
 
     @Test
-    public void forgotPasswordTestCase() {
+    public void forgotPasswordInChromeTestCase() {
         ChromeDriver chromeDriver = initializeChromeDriver();
 
         try {
 
             setWebDriverURL("https://rahulshettyacademy.com/locatorspractice/", chromeDriver);
             chromeDriver.findElement(By.linkText("Forgot your password?")).click();
+            WebElement firstResult = new WebDriverWait(chromeDriver, Duration.ofMinutes(1)).until(ExpectedConditions.elementToBeClickable(By.className("reset-pwd-btn")));
             chromeDriver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("NewTestUser");
             chromeDriver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("newTestUser12345@test.test");
             chromeDriver.findElement(By.xpath("//input[@placeholder='Phone Number']")).sendKeys("234-567-8901");
             chromeDriver.findElement(By.className("reset-pwd-btn")).click();
-            
+
         } catch (Exception e) {
 
             e.printStackTrace();
