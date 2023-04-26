@@ -1,6 +1,7 @@
+package testSuites;
+
 import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +11,6 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTestSuite extends TestSuite {
-
 
     private final static String INCORRECT_PASSWORD_MESSAGE = "* Incorrect username or password";
     private final static String FORGOT_PASSWORD_MESSAGE = "Please use temporary password 'rahulshettyacademy' to Login.";
