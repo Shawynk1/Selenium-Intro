@@ -53,6 +53,7 @@ public abstract class TestSuite {
         System.setProperty("webdriver.chrome.driver", chromeWebdriverProperties.getProperty("webdriver.chrome.driver"));
         ChromeDriver newChromeDriver = new ChromeDriver(options);
         newChromeDriver.manage().timeouts().implicitlyWait(implicitWait);
+        newChromeDriver.manage().window().maximize();
         return newChromeDriver;
     }
 }
