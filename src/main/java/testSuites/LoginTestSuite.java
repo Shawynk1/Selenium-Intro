@@ -33,14 +33,14 @@ public class LoginTestSuite extends TestSuite {
 
             e.printStackTrace();
 
-        } // try catch
-
-        try {
-            Assert.isTrue(chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(INCORRECT_PASSWORD_MESSAGE), "Error message is not correct.");
-        } catch (Exception e) {
-            throw e;
         } finally {
-            chromeDriver.close();
+            try {
+                Assert.isTrue(chromeDriver.findElement(By.cssSelector("p.error")).getText().equals(INCORRECT_PASSWORD_MESSAGE), "Error message is not correct.");
+            } catch (Exception e) {
+                throw e;
+            } finally {
+                chromeDriver.close();
+            }
         }
     } // passwordErrorMessageTestCase
 
@@ -62,17 +62,16 @@ public class LoginTestSuite extends TestSuite {
 
             e.printStackTrace();
 
-        } // try catch
-
-        try {
-
-            Assert.isTrue(chromeDriver.findElement(By.className("infoMsg")).getText().equals(FORGOT_PASSWORD_MESSAGE), "Forgot Password message is not correct.");
-
-        } catch (Exception e) {
-            throw e;
         } finally {
-            chromeDriver.close();
+            try {
+
+                Assert.isTrue(chromeDriver.findElement(By.className("infoMsg")).getText().equals(FORGOT_PASSWORD_MESSAGE), "Forgot Password message is not correct.");
+
+            } catch (Exception e) {
+                throw e;
+            } finally {
+                chromeDriver.close();
+            }
         }
     }
-
 }
