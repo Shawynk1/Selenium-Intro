@@ -1,4 +1,4 @@
-package testSuites;
+package seleniumTestSuites.rahulAcademy;
 
 import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
@@ -7,9 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 
-public class FlightsTestSuite extends TestSuite {
+/**
+ * The FlightsTestSuite class is for practicing writing test cases using Selenium and drop-downs on websites.
+ */
+public class FlightsSeleniumTestSuite extends RahulAcademySeleniumTestSuite {
 
     @Test
     public void searchForFlightTestCase() {
@@ -20,7 +24,7 @@ public class FlightsTestSuite extends TestSuite {
         ChromeDriver chromeDriver = initializeChromeDriver();
 
         try {
-            setWebDriverURL("https://rahulshettyacademy.com/dropdownsPractise/", chromeDriver);
+            setWebDriverURL(RAHULSHETTYACADEMY_COM_DROPDOWNS_PRACTISE, chromeDriver);
 
             new WebDriverWait(chromeDriver, Duration.ofMinutes(1)).until(ExpectedConditions.elementToBeClickable(By.id("ctl00_mainContent_ddl_originStation1_CTXT")));
             chromeDriver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();

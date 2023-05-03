@@ -1,10 +1,8 @@
-package testSuites;
+package seleniumTestSuites;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,8 +10,10 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
-public abstract class TestSuite {
-    protected final static String rahulAcademyURL = "https://rahulshettyacademy.com/";
+/**
+ * This abstract class TestSuite is the parent class of all the Selenium test suites in this package and sub packages.
+ */
+public abstract class SeleniumTestSuite {
 
     private Properties loadChromeWebDriverProperties() {
         try {
