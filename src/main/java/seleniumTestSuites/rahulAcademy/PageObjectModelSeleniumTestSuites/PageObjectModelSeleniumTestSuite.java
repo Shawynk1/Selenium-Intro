@@ -1,0 +1,6 @@
+package seleniumTestSuites.rahulAcademy.PageObjectModelSeleniumTestSuites;
+
+import seleniumTestSuites.rahulAcademy.RahulAcademySeleniumTestSuite;
+
+public class PageObjectModelSeleniumTestSuite extends RahulAcademySeleniumTestSuite {
+}

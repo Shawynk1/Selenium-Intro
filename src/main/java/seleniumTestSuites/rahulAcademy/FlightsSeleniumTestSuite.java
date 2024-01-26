@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import seleniumTestSuites.ConfiguredWebDrivers.DefaultChromeWebDriver;
 
 import java.time.Duration;
 
@@ -21,7 +22,7 @@ public class FlightsSeleniumTestSuite extends RahulAcademySeleniumTestSuite {
         int numberOfChildren = 2;
         int numberOfInfants = 1;
 
-        ChromeDriver chromeDriver = initializeChromeDriver();
+        ChromeDriver chromeDriver = DefaultChromeWebDriver.initializeChromeDriver();
 
         try {
             setWebDriverURL(RAHULSHETTYACADEMY_COM_DROPDOWNS_PRACTISE, chromeDriver);

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import seleniumTestSuites.ConfiguredWebDrivers.DefaultChromeWebDriver;
+
 import java.time.Duration;
 
 /**
@@ -17,7 +19,7 @@ public class LoginSeleniumTestSuite extends RahulAcademySeleniumTestSuite {
     @Test
     public void passwordErrorMessageInChromeTestCase() {
 
-        ChromeDriver chromeDriver = initializeChromeDriver();
+        ChromeDriver chromeDriver = DefaultChromeWebDriver.initializeChromeDriver();
 
         try {
 
@@ -45,8 +47,7 @@ public class LoginSeleniumTestSuite extends RahulAcademySeleniumTestSuite {
 
     @Test
     public void forgotPasswordInChromeTestCase() {
-        ChromeDriver chromeDriver = initializeChromeDriver();
-
+        ChromeDriver chromeDriver = DefaultChromeWebDriver.initializeChromeDriver();
         try {
 
             setWebDriverURL("https://rahulshettyacademy.com/locatorspractice/", chromeDriver);
