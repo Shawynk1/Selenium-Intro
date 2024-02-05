@@ -13,7 +13,7 @@ public final class DefaultChromeWebDriver {
     private static Properties loadChromeWebDriverProperties() {
         try {
             Properties chromeWebdriverProperties = new Properties();
-            FileReader testSuitePropertiesFile = new FileReader("src/main/resources/chromeWebdriver");
+            FileReader testSuitePropertiesFile = new FileReader("src/main/resources/chromedriver.exe");
             chromeWebdriverProperties.load(testSuitePropertiesFile);
             testSuitePropertiesFile.close();
             return chromeWebdriverProperties;
@@ -30,13 +30,15 @@ public final class DefaultChromeWebDriver {
     }
 
     public static ChromeDriver initializeChromeDriver(Duration implicitWait) {
-        Properties chromeWebdriverProperties = loadChromeWebDriverProperties();
+        //Properties chromeWebdriverProperties = loadChromeWebDriverProperties();
+        Properties chromeWebdriverProperties = new Properties();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=" + chromeWebdriverProperties.getProperty("--remote-allow-origins"));
 
         System.out.println(chromeWebdriverProperties.getProperty("webdriver.chrome.driver"));
-        System.setProperty("webdriver.chrome.driver", chromeWebdriverProperties.getProperty("webdriver.chrome.driver"));
+        //System.setProperty("webdriver.chrome.driver", chromeWebdriverProperties.getProperty("webdriver.chrome.driver"));
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeDriver newChromeDriver = new ChromeDriver(options);
         newChromeDriver.manage().timeouts().implicitlyWait(implicitWait);
         newChromeDriver.manage().window().maximize();
